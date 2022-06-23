@@ -1,72 +1,48 @@
-import {TaskStatuses, TaskType} from '../../types/types';
+import {TaskType} from '../../types/types';
+import {AppThunkType} from '../store';
+import {TodoListsAPI} from '../../api/api';
 
-const tasksInitState: TasksInitStateType = {
-    '1': [{
-        id: '1',
-        title: 'task First 1',
-        todoListId: '1',
-        status: TaskStatuses.New,
-        description: 'non',
-        order: 0,
-        priority: 0,
-        deadline: '',
-        addedDate: '',
-        startDate: ''
-    }, {
-        id: '2',
-        title: 'task Second 1',
-        todoListId: '1',
-        status: TaskStatuses.Completed,
-        description: 'non',
-        order: 0,
-        priority: 0,
-        deadline: '',
-        addedDate: '',
-        startDate: ''
-    }],
-    '2': [{
-            id: '1',
-            title: 'task First 2',
-            todoListId: '2',
-            status: TaskStatuses.New,
-            description: 'non',
-            order: 0,
-            priority: 0,
-            deadline: '',
-            addedDate: '',
-            startDate: ''
-        }, {
-            id: '2',
-            title: 'task Second 2 task Second 2 task Second 2 task Second 2 task Second 2 ',
-            todoListId: '2',
-            status: TaskStatuses.Completed,
-            description: 'non',
-            order: 0,
-            priority: 0,
-            deadline: '',
-            addedDate: '',
-            startDate: ''
-        }, {
-            id: '3',
-            title: 'task Third 2',
-            todoListId: '2',
-            status: TaskStatuses.InProgress,
-            description: 'non',
-            order: 0,
-            priority: 0,
-            deadline: '',
-            addedDate: '',
-            startDate: ''
-        }]
-}
+const tasksInitState: TasksInitStateType = {}
 
 export const tasksReducer = (
-    state: TasksInitStateType = tasksInitState, action: any): TasksInitStateType => {
-    return state
+    state: TasksInitStateType = tasksInitState,
+    action: TasksReducerActionsType
+): TasksInitStateType => {
+    switch (action.type) {
+        case 'tasks/SET_TASKS':
+            return {
+                ...state,
+                [action.payload.todolistId]: action.payload.tasks
+            }
+        default:
+            return state
+    }
+}
+
+
+// action
+
+const setTasks = (todolistId: string, tasks: TaskType[]) => ({
+    type: 'tasks/SET_TASKS',
+    payload: {todolistId, tasks}
+} as const)
+
+
+// thunk
+
+export const fetchTasks = (todoListId: string): AppThunkType => async dispatch => {
+    try {
+        const res = await TodoListsAPI.getTasks(todoListId)
+        dispatch(setTasks(todoListId, res.data.items))
+    } catch (e: any) {
+
+    }
 }
 
 
 // type
+
+type TasksReducerActionsType = ReturnType<typeof setTasks>
 
 type TasksInitStateType = {
     [key: string]: TaskType[]

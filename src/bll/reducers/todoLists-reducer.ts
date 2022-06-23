@@ -1,28 +1,43 @@
 import {TodoListType} from '../../types/types';
+import {AppThunkType} from '../store';
+import {TodoListsAPI} from '../../api/api';
 
-const todoListsInitState: TodoListInitStateType = [
-    {
-        id: '1',
-        title: 'first',
-        addedDate: 'sdsdsd',
-        order: 0
-    },
-    {
-        id: '2',
-        title: 'second',
-        addedDate: 'sdsdsd',
-        order: 0
-    }
-]
+const todoListsInitState: TodoListInitStateType = []
 
 export const todoListsReducer = (
     state: TodoListInitStateType = todoListsInitState,
-    action: any
+    action: TodoListsReducerActionsType
 ): TodoListInitStateType => {
-    return state
+    switch (action.type) {
+        case 'todoLists/SET_TODO_LISTS':
+            return [...action.payload.todoLists, ...state]
+        default:
+            return state
+    }
 }
 
+
+// action
+
+const setTodoLists = (todoLists: TodoListType[]) => ({
+    type: 'todoLists/SET_TODO_LISTS',
+    payload: {todoLists}
+} as const)
+
+
+// thunk
+
+export const fetchTodoLists = (): AppThunkType => async dispatch => {
+    try {
+        const res = await TodoListsAPI.getTodoLists()
+        dispatch(setTodoLists(res.data))
+    } catch (e: any) {
+        console.log(e)
+    }
+}
 
 // type
 
 type TodoListInitStateType = TodoListType[]
+
+type TodoListsReducerActionsType = ReturnType<typeof setTodoLists>

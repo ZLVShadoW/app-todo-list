@@ -1,24 +1,32 @@
 import styles from './TodoList.module.css';
 
 import React from 'react';
-import {useAppSelector} from '../../bll/store';
+import {useAppDispatch} from '../../bll/store';
 import {Task} from '../Task/Task';
+import {fetchTasks} from '../../bll/reducers/tasks-reducer';
+import {TaskType, TodoListType} from '../../types/types';
 
 
 type TodoListPropsType = {
-    id: string
-    title: string
+    todoList: TodoListType
+    tasks: TaskType[]
 }
 
-export const TodoList: React.FC<TodoListPropsType> = ({id, title}) => {
-    const tasks = useAppSelector(state => state.tasks)
+export const TodoList: React.FC<TodoListPropsType> = ({todoList, tasks}) => {
+    const dispatch = useAppDispatch()
+
+    React.useEffect(() => {
+        dispatch(fetchTasks(todoList.id))
+    }, [])
 
     return (
         <div className={styles.todoList}>
-            <h3>{title}</h3>
+            <h3>{todoList.title}</h3>
             <div>
                 {
-                    tasks[id].map(task => <Task key={task.id} title={task.title}/>)
+                    tasks && tasks.map(task => <Task key={task.id}
+                                                id={task.id}
+                                                title={task.title}/>)
                 }
             </div>
         </div>
