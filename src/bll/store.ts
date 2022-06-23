@@ -1,10 +1,10 @@
 import {combineReducers, legacy_createStore} from 'redux';
-import { todoListReducer } from './reducers/todoList-reducer';
+import {todoListsReducer} from './reducers/todoLists-reducer';
 import {tasksReducer} from './reducers/tasks-reducer';
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 
 const rootReducer = combineReducers({
-    todoList: todoListReducer,
+    todoLists: todoListsReducer,
     tasks: tasksReducer
 })
 
