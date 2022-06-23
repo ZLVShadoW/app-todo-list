@@ -1,6 +1,6 @@
-import React from 'react';
+import styles from './TodoList.module.css';
 
-import styles from './TodoList.module.css'
+import React from 'react';
 import {useAppSelector} from '../../bll/store';
 import {Task} from '../Task/Task';
 

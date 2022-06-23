@@ -37,7 +37,7 @@ const tasksInitState: TasksInitStateType = {
             startDate: ''
         }, {
             id: '2',
-            title: 'task Second 2',
+            title: 'task Second 2 task Second 2 task Second 2 task Second 2 task Second 2 ',
             todoListId: '2',
             status: TaskStatuses.Completed,
             description: 'non',
