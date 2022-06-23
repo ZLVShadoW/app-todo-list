@@ -5,8 +5,7 @@ import {TodoLists} from '../TodoLists/TodoLists';
 function App() {
 
     return (
-        <div className="App">
-            Hello
+        <div style={{display: 'flex', gap: 30}}>
             <TodoLists/>
         </div>
     );

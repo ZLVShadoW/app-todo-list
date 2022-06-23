@@ -1,8 +1,8 @@
 export type TodoListType = {
     id: string
+    title: string
     addedDate: string
     order: number
-    title: string
 }
 
 export enum TaskStatuses {
