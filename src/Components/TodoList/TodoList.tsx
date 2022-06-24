@@ -3,7 +3,7 @@ import styles from './TodoList.module.css';
 import React from 'react';
 import {useAppDispatch} from '../../bll/store';
 import {Task} from '../Task/Task';
-import {fetchTasks} from '../../bll/reducers/tasks-reducer';
+import {fetchTasks} from '../../bll/thunk/tasks-thunks';
 import {TaskType, TodoListType} from '../../types/types';
 
 
@@ -25,8 +25,8 @@ export const TodoList: React.FC<TodoListPropsType> = ({todoList, tasks}) => {
             <div>
                 {
                     tasks && tasks.map(task => <Task key={task.id}
-                                                id={task.id}
-                                                title={task.title}/>)
+                                                     id={task.id}
+                                                     title={task.title}/>)
                 }
             </div>
         </div>

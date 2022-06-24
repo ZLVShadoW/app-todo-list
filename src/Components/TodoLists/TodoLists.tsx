@@ -1,5 +1,5 @@
 import React from 'react';
-import {fetchTodoLists} from '../../bll/reducers/todoLists-reducer';
+import {fetchTodoLists} from '../../bll/thunk/todoLists-thunks';
 import {useAppDispatch, useAppSelector} from '../../bll/store';
 import {TodoList} from '../TodoList/TodoList';
 
@@ -11,7 +11,7 @@ export const TodoLists = () => {
 
     React.useEffect(() => {
         dispatch(fetchTodoLists())
-    }, [])
+    }, [dispatch])
 
     return (
         <>
