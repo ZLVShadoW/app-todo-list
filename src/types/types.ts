@@ -1,3 +1,5 @@
+export type Nullable<T> = null | T
+
 export type TodoListType = {
     id: string
     title: string

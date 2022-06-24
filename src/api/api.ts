@@ -14,10 +14,13 @@ export const TodoListsAPI = {
         return instance.get<TodoListType[]>(`todo-lists`)
     },
     createTodoList(title: string) {
-        return instance.post<CreateTodoListResponseType>(`todo-lists`, {title})
+        return instance.post<CommonResponseType<{item: TodoListType}>>(`todo-lists`, {title})
     },
     getTasks(todolistId: string) {
         return instance.get<GetTasksResponseType>(`todo-lists/${todolistId}/tasks`)
+    },
+    createTask(todoListId: string, title: string){
+        return instance.post<CommonResponseType<{item: TaskType}>>(`todo-lists/${todoListId}/tasks`, {title})
     }
 }
 
@@ -30,12 +33,10 @@ export enum ResultCodeEnum {
     captcha = 10
 }
 
-type CreateTodoListResponseType = {
+type CommonResponseType<D = {}> = {
     resultCode: ResultCodeEnum
-    messages: string[],
-    data: {
-        item: TodoListType
-    }
+    messages: string[]
+    data: D
 }
 
 type GetTasksResponseType = {
