@@ -17,6 +17,11 @@ export const tasksReducer = (
                 ...state,
                 [action.payload.task.todoListId]: [action.payload.task, ...state[action.payload.task.todoListId]]
             }
+        case 'tasks/REMOVE_TASK':
+            return {
+                ...state,
+                [action.payload.todoListId]: state[action.payload.todoListId].filter(el => el.id !== action.payload.taskId)
+            }
         case 'todoLists/ADD_TODO_LIST':
             return {
                 ...state,

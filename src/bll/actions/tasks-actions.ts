@@ -9,3 +9,9 @@ export const addTask = (task: TaskType) => ({
     type: 'tasks/ADD_TASK',
     payload: {task}
 } as const)
+
+export const removeTask = (
+    todoListId: string, taskId: string) => ({
+    type: 'tasks/REMOVE_TASK',
+    payload: {todoListId, taskId}
+} as const)

@@ -14,13 +14,16 @@ export const TodoListsAPI = {
         return instance.get<TodoListType[]>(`todo-lists`)
     },
     createTodoList(title: string) {
-        return instance.post<CommonResponseType<{item: TodoListType}>>(`todo-lists`, {title})
+        return instance.post<CommonResponseType<{ item: TodoListType }>>(`todo-lists`, {title})
     },
     getTasks(todolistId: string) {
         return instance.get<GetTasksResponseType>(`todo-lists/${todolistId}/tasks`)
     },
-    createTask(todoListId: string, title: string){
-        return instance.post<CommonResponseType<{item: TaskType}>>(`todo-lists/${todoListId}/tasks`, {title})
+    createTask(todoListId: string, title: string) {
+        return instance.post<CommonResponseType<{ item: TaskType }>>(`todo-lists/${todoListId}/tasks`, {title})
+    },
+    deleteTask(todoListId: string, taskId: string) {
+        return instance.delete<CommonResponseType>(`todo-lists/${todoListId}/tasks/${taskId}`)
     }
 }
 
@@ -36,6 +39,7 @@ export enum ResultCodeEnum {
 type CommonResponseType<D = {}> = {
     resultCode: ResultCodeEnum
     messages: string[]
+    fieldsErrors: string[]
     data: D
 }
 

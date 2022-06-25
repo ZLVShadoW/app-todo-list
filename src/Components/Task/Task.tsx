@@ -7,16 +7,17 @@ import {Button} from '../1_Common/Button/Button';
 type TaskPropsType = {
     id: string
     title: string
+    removeTask: (taskId: string) => void
 }
 
-export const Task: React.FC<TaskPropsType> = ({id, title}) => {
+export const Task: React.FC<TaskPropsType> = ({id, title, removeTask}) => {
 
     const editClick = () => {
         console.log('edit ', id)
     }
 
-    const deleteClick = () => {
-        console.log('delete ', id)
+    const onDeleteTaskHandler = () => {
+        removeTask(id)
     }
     return (
         <div className={styles.task}>
@@ -24,7 +25,7 @@ export const Task: React.FC<TaskPropsType> = ({id, title}) => {
             <div>{title}</div>
             <div className={styles.btnGroup}>
                 <Button onClick={editClick}>edit</Button>
-                <Button onClick={deleteClick}>delete</Button>
+                <Button onClick={onDeleteTaskHandler}>delete</Button>
             </div>
         </div>
     );
