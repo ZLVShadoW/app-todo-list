@@ -13,6 +13,9 @@ export const TodoListsAPI = {
     getTodoLists() {
         return instance.get<TodoListType[]>(`todo-lists`)
     },
+    updateTodoList(id: string, title: string) {
+        return instance.put<CommonResponseType>(`todo-lists/${id}`, {title})
+    },
     createTodoList(title: string) {
         return instance.post<CommonResponseType<{ item: TodoListType }>>(`todo-lists`, {title})
     },

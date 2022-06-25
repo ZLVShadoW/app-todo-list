@@ -4,6 +4,7 @@ import React from 'react';
 import {Button} from '../1_Common/Button/Button';
 import {useAppDispatch} from '../../bll/store';
 import {deleteTodoList} from '../../bll/thunk/todoLists-thunks';
+import {EditableTitle} from '../1_Common/EditableTitle/EditableTitle';
 
 
 type TodoListHeaderPropsType = {
@@ -20,9 +21,11 @@ export const TodoListHeader: React.FC<TodoListHeaderPropsType> = ({id, title}) =
 
     return (
         <div className={styles.header}>
-            <h3>{title}</h3>
+            <h3 style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%'}}>
+                <EditableTitle title={title}/>
+            </h3>
             <div className={styles.btnGroup}>
-                <Button>Edit</Button>
+                {/*<Button onClick={onEditHandler}>Edit</Button>*/}
                 <Button onClick={onDeleteHandler}>Delete</Button>
             </div>
         </div>

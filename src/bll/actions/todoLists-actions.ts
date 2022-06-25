@@ -5,6 +5,12 @@ export const setTodoLists = (todoLists: TodoListType[]) => ({
     payload: {todoLists}
 } as const)
 
+export const changeTodoList = (
+    id: string, title: string) => ({
+    type: 'todoList/CHANGE_TODO_LIST',
+    payload: {id, title}
+} as const)
+
 export const addTodoList = (todoList: TodoListType) => ({
     type: 'todoLists/ADD_TODO_LIST',
     payload: {todoList}

@@ -1,6 +1,11 @@
 import {AppThunkType} from '../types/types';
 import {ResultCodeEnum, TodoListsAPI} from '../../api/api';
-import {addTodoList, removeTodoList, setTodoLists} from '../actions/todoLists-actions';
+import {
+    addTodoList,
+    changeTodoList,
+    removeTodoList,
+    setTodoLists
+} from '../actions/todoLists-actions';
 
 export const fetchTodoLists = (): AppThunkType => async dispatch => {
     try {
@@ -18,6 +23,18 @@ export const createTodoList = (title: string): AppThunkType => async dispatch =>
             dispatch(addTodoList(res.data.data.item))
         }
     } catch (e: any) {
+
+    }
+}
+
+export const updateTodoList = (
+    id: string, title: string): AppThunkType => async dispatch => {
+    try {
+        const res = await TodoListsAPI.updateTodoList(id, title)
+        if (res.data.resultCode === ResultCodeEnum.success) {
+            dispatch(changeTodoList(id, title))
+        }
+    } catch (e) {
 
     }
 }
