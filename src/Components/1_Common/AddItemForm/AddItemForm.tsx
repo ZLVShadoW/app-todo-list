@@ -15,7 +15,7 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = ({addItem}) => {
         setTitle(e.currentTarget.value)
     }
 
-    const onClickHandler = () => {
+    const onAddHandler = () => {
         if (title.trim() !== '') {
             addItem(title)
             setTitle('')
@@ -29,7 +29,7 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = ({addItem}) => {
             setError(null)
         }
         if (e.key === 'Enter') {
-            onClickHandler()
+            onAddHandler()
         }
     }
 
@@ -39,7 +39,7 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = ({addItem}) => {
                    onChange={onChangeTitleHandler}
                    onKeyPress={onKeyPressHandler}
                    placeholder={'Title'}/>
-            <Button onClick={onClickHandler}>Add</Button>
+            <Button onClick={onAddHandler}>Add</Button>
             {error && <div style={{position: 'absolute', bottom: 0, color: 'red'}}>{error}</div>}
         </div>
     );

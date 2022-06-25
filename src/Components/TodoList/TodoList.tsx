@@ -6,6 +6,8 @@ import {Task} from '../Task/Task';
 import {createTask, deleteTask, fetchTasks} from '../../bll/thunk/tasks-thunks';
 import {TaskType, TodoListType} from '../../types/types';
 import {AddItemForm} from '../1_Common/AddItemForm/AddItemForm';
+import {Button} from '../1_Common/Button/Button';
+import {TodoListHeader} from '../TodoListHeader/TodoListHeader';
 
 
 type TodoListPropsType = {
@@ -30,7 +32,8 @@ export const TodoList: React.FC<TodoListPropsType> = ({todoList, tasks}) => {
 
     return (
         <div className={styles.todoList}>
-            <h3>{todoList.title}</h3>
+            <TodoListHeader title={todoList.title}
+                            id={todoList.id}/>
             <AddItemForm addItem={addTask}/>
             <div>
                 {

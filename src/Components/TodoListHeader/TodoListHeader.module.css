@@ -1,0 +1,11 @@
+.header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btnGroup {
+    display: flex;
+    gap: 6px;
+    margin-left: auto;
+}

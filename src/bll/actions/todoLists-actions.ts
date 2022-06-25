@@ -9,3 +9,8 @@ export const addTodoList = (todoList: TodoListType) => ({
     type: 'todoLists/ADD_TODO_LIST',
     payload: {todoList}
 } as const)
+
+export const removeTodoList = (id: string) => ({
+    type: 'todoLists/REMOVE_TODO_LIST',
+    payload: {id}
+} as const)

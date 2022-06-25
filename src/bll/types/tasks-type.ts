@@ -1,11 +1,12 @@
 import {TaskType} from '../../types/types';
 import {addTask, removeTask, setTasks} from '../actions/tasks-actions';
-import {AddTodoList} from './todoLists-type';
+import {AddTodoList, RemoveTodoList} from './todoLists-type';
 
 export type TasksReducerActionsType = ReturnType<typeof setTasks>
-    | AddTodoList
     | ReturnType<typeof addTask>
     | ReturnType<typeof removeTask>
+    | AddTodoList
+    | RemoveTodoList
 
 export type TasksInitStateType = {
     [key: string]: TaskType[]
