@@ -21,9 +21,11 @@ export const TodoListHeader: React.FC<TodoListHeaderPropsType> = ({id, title}) =
 
     return (
         <div className={styles.header}>
-            <h3 style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%'}}>
-                <EditableTitle title={title}/>
+            <h3 className={styles.title}>
+                <EditableTitle id={id}
+                               title={title}/>
             </h3>
+
             <div className={styles.btnGroup}>
                 {/*<Button onClick={onEditHandler}>Edit</Button>*/}
                 <Button onClick={onDeleteHandler}>Delete</Button>
