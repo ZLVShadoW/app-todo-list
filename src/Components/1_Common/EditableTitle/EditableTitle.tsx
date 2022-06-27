@@ -23,7 +23,7 @@ export const EditableTitle: React.FC<EditableTitlePropsType> = ({id, title}) => 
         setEditMode(!editMode)
 
         if (editMode && value.trim() !== '' && value !== title) {
-            dispatch(updateTodoList(id, value))
+            dispatch(updateTodoList(id, value.trim()))
         }
         if (value.trim() === '') {
             setValue(title)

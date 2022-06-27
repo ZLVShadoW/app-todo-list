@@ -15,12 +15,14 @@ export const tasksReducer = (
         case 'tasks/ADD_TASK':
             return {
                 ...state,
-                [action.payload.task.todoListId]: [action.payload.task, ...state[action.payload.task.todoListId]]
+                [action.payload.task.todoListId]: [action.payload.task,
+                    ...state[action.payload.task.todoListId]]
             }
         case 'tasks/REMOVE_TASK':
             return {
                 ...state,
-                [action.payload.todoListId]: state[action.payload.todoListId].filter(el => el.id !== action.payload.taskId)
+                [action.payload.todoListId]: state[action.payload.todoListId]
+                    .filter(el => el.id !== action.payload.taskId)
             }
         case 'todoLists/ADD_TODO_LIST':
             return {
@@ -31,6 +33,13 @@ export const tasksReducer = (
             const copyState = {...state}
             delete copyState[action.payload.id]
             return copyState
+        case 'tasks/UPDATE_TASK':
+            return {
+                ...state,
+                [action.payload.todoListId]: state[action.payload.todoListId]
+                    .map(el => el.id === action.payload.taskId
+                        ? {...el, ...action.payload.data} : el)
+            }
         default:
             return state
     }

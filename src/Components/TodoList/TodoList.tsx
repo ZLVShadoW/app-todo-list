@@ -6,7 +6,6 @@ import {Task} from '../Task/Task';
 import {createTask, deleteTask, fetchTasks} from '../../bll/thunk/tasks-thunks';
 import {TaskType, TodoListType} from '../../types/types';
 import {AddItemForm} from '../1_Common/AddItemForm/AddItemForm';
-import {Button} from '../1_Common/Button/Button';
 import {TodoListHeader} from '../TodoListHeader/TodoListHeader';
 
 

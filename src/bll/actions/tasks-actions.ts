@@ -1,4 +1,4 @@
-import {TaskType} from '../../types/types';
+import {TaskType, UpdateDomainTaskModelType} from '../../types/types';
 
 export const setTasks = (todolistId: string, tasks: TaskType[]) => ({
     type: 'tasks/SET_TASKS',
@@ -15,3 +15,8 @@ export const removeTask = (
     type: 'tasks/REMOVE_TASK',
     payload: {todoListId, taskId}
 } as const)
+
+export const updateChangesTask = (
+    todoListId: string, taskId: string,
+    data: UpdateDomainTaskModelType
+) => ({type: 'tasks/UPDATE_TASK', payload: {todoListId, taskId, data}} as const)

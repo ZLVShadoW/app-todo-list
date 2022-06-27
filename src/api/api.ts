@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {TaskType, TodoListType} from '../types/types';
+import {TaskType, TodoListType, UpdateTaskModelType} from '../types/types';
 
 const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.1/',
@@ -20,7 +20,7 @@ export const TodoListsAPI = {
         return instance.post<CommonResponseType<{ item: TodoListType }>>(`todo-lists`, {title})
     },
     deleteTodoList(id: string) {
-      return instance.delete<CommonResponseType>(`todo-lists/${id}`)
+        return instance.delete<CommonResponseType>(`todo-lists/${id}`)
     },
     getTasks(todolistId: string) {
         return instance.get<GetTasksResponseType>(`todo-lists/${todolistId}/tasks`)
@@ -30,6 +30,9 @@ export const TodoListsAPI = {
     },
     deleteTask(todoListId: string, taskId: string) {
         return instance.delete<CommonResponseType>(`todo-lists/${todoListId}/tasks/${taskId}`)
+    },
+    updateTask(todoListId: string, taskId: string, data: UpdateTaskModelType) {
+        return instance.put<CommonResponseType<{ item: TaskType }>>(`todo-lists/${todoListId}/tasks/${taskId}`, data)
     }
 }
 
@@ -54,4 +57,5 @@ type GetTasksResponseType = {
     totalCount: number
     error: string | null
 }
+
 
