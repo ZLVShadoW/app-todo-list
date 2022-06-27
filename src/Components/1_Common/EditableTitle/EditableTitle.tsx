@@ -1,17 +1,18 @@
+import styles from './EditableTitle.module.css'
+
 import React from 'react';
 import {Button} from '../Button/Button';
-import {useAppDispatch} from '../../../bll/store';
-import {updateTodoList} from '../../../bll/thunk/todoLists-thunks';
 
 
 type EditableTitlePropsType = {
-    id: string
     title: string
+    onChangeTitle: (newTitle: string) => void
 }
 
-export const EditableTitle: React.FC<EditableTitlePropsType> = ({id, title}) => {
-    const dispatch = useAppDispatch()
-
+export const EditableTitle: React.FC<EditableTitlePropsType> = ({
+    title,
+    onChangeTitle
+}) => {
     const [editMode, setEditMode] = React.useState(false)
     const [value, setValue] = React.useState(title)
 
@@ -23,7 +24,7 @@ export const EditableTitle: React.FC<EditableTitlePropsType> = ({id, title}) => 
         setEditMode(!editMode)
 
         if (editMode && value.trim() !== '' && value !== title) {
-            dispatch(updateTodoList(id, value.trim()))
+            onChangeTitle(value.trim())
         }
         if (value.trim() === '') {
             setValue(title)
@@ -37,7 +38,7 @@ export const EditableTitle: React.FC<EditableTitlePropsType> = ({id, title}) => 
     }
 
     return (
-        <>
+        <span className={styles.title}>
             {editMode
                 ? <input value={value}
                          onChange={onChangeValueHandler}
@@ -45,6 +46,6 @@ export const EditableTitle: React.FC<EditableTitlePropsType> = ({id, title}) => 
                 : title
             }
             <Button onClick={onEditHandler}>Edit</Button>
-        </>
+        </span>
     );
 };

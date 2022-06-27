@@ -34,6 +34,10 @@ export const TodoList: React.FC<TodoListPropsType> = ({todoList, tasks}) => {
         dispatch(updateTask(todoList.id, taskId, {status}))
     }
 
+    const changeTaskTitle = (taskId: string, title: string) => {
+        dispatch(updateTask(todoList.id, taskId, {title}))
+    }
+
     React.useEffect(() => {
         dispatch(fetchTasks(todoList.id))
     }, [])
@@ -50,7 +54,8 @@ export const TodoList: React.FC<TodoListPropsType> = ({todoList, tasks}) => {
                                                      title={task.title}
                                                      status={task.status}
                                                      removeTask={removeTask}
-                                                     changeTaskStatus={changeTaskStatus}/>)
+                                                     changeTaskStatus={changeTaskStatus}
+                                                     changeTaskTitle={changeTaskTitle}/>)
                 }
             </div>
         </div>
