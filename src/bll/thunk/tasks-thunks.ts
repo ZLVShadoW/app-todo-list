@@ -12,7 +12,8 @@ export const fetchTasks = (todoListId: string): AppThunkType => async dispatch =
     }
 }
 
-export const createTask = (todoListId: string, title: string): AppThunkType => async dispatch => {
+export const createTask = (
+    todoListId: string, title: string): AppThunkType => async dispatch => {
     try {
         const res = await TodoListsAPI.createTask(todoListId, title)
         if (res.data.resultCode === ResultCodeEnum.success) {
@@ -23,7 +24,8 @@ export const createTask = (todoListId: string, title: string): AppThunkType => a
     }
 }
 
-export const deleteTask = (todoListId: string, taskId: string): AppThunkType => async dispatch => {
+export const deleteTask = (
+    todoListId: string, taskId: string): AppThunkType => async dispatch => {
     try {
         const res = await TodoListsAPI.deleteTask(todoListId, taskId)
         if (res.data.resultCode === ResultCodeEnum.success) {
@@ -34,7 +36,12 @@ export const deleteTask = (todoListId: string, taskId: string): AppThunkType => 
     }
 }
 
-export const updateTask = (todoListId: string, taskId: string, data: UpdateDomainTaskModelType): AppThunkType => async (dispatch: AppDispatchThunkActionType, getState: () => AppRootStateType) =>  {
+export const updateTask = (
+    todoListId: string, taskId: string,
+    data: UpdateDomainTaskModelType
+): AppThunkType => async (
+    dispatch: AppDispatchThunkActionType, getState: () => AppRootStateType) => {
+
     const task = getState().tasks[todoListId].find(el => el.id === taskId)
     if (!task) {
         console.warn('such task not found in the state')
