@@ -7,11 +7,13 @@ import {Button} from '../Button/Button';
 type EditableTitlePropsType = {
     title: string
     onChangeTitle: (newTitle: string) => void
+    tag: React.ElementType
 }
 
 export const EditableTitle: React.FC<EditableTitlePropsType> = ({
     title,
-    onChangeTitle
+    onChangeTitle,
+    tag: Tag
 }) => {
     const [editMode, setEditMode] = React.useState(false)
     const [value, setValue] = React.useState(title)
@@ -38,14 +40,14 @@ export const EditableTitle: React.FC<EditableTitlePropsType> = ({
     }
 
     return (
-        <span className={styles.title}>
+        <div className={styles.title}>
             {editMode
                 ? <input value={value}
                          onChange={onChangeValueHandler}
                          onKeyPress={callOnEditHandler}/>
-                : title
+                : <Tag>{title}</Tag>
             }
             <Button onClick={onEditHandler}>Edit</Button>
-        </span>
+        </div>
     );
 };

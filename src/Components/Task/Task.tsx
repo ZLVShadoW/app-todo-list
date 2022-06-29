@@ -44,7 +44,8 @@ export const Task: React.FC<TaskPropsType> = ({
                        onChange={onChangeTaskStatusHandler} type={'checkbox'}/>
             </div>
             <div className={styles.taskTitle}>
-                <EditableTitle title={title}
+                <EditableTitle tag={'span'}
+                               title={title}
                                onChangeTitle={onChangeTaskTitle}/>
             </div>
             <div className={styles.btnGroup}>
