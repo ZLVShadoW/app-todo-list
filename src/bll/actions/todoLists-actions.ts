@@ -1,4 +1,4 @@
-import {TodoListType} from '../../types/types';
+import {FilterStatusesType, TodoListType} from '../../types/types';
 
 export const setTodoLists = (todoLists: TodoListType[]) => ({
     type: 'todoLists/SET_TODO_LISTS',
@@ -19,4 +19,9 @@ export const addTodoList = (todoList: TodoListType) => ({
 export const removeTodoList = (id: string) => ({
     type: 'todoLists/REMOVE_TODO_LIST',
     payload: {id}
+} as const)
+
+export const changeFilter = (todoListId: string, filter: FilterStatusesType) => ({
+    type: 'todoLists/CHANGE_FILTER',
+    payload: {todoListId, filter}
 } as const)

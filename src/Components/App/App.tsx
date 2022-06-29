@@ -1,5 +1,6 @@
+import styles from './App.module.css';
+
 import React from 'react';
-import './App.css';
 import {TodoLists} from '../TodoLists/TodoLists';
 import {useAppDispatch} from '../../bll/store';
 import {AddItemForm} from '../1_Common/AddItemForm/AddItemForm';
@@ -13,13 +14,7 @@ function App() {
     }
 
     return (
-        <div style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: 30,
-            maxWidth: 1850,
-            margin: '0 auto'
-        }}>
+        <div className={styles.container}>
             <AddItemForm addItem={addTodoList}/>
             <TodoLists/>
         </div>

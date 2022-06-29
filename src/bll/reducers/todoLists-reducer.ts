@@ -8,9 +8,9 @@ export const todoListsReducer = (
 ): TodoListInitStateType => {
     switch (action.type) {
         case 'todoLists/SET_TODO_LISTS':
-            return action.payload.todoLists
+            return action.payload.todoLists.map(el => ({...el, filter: 'ALL'}))
         case 'todoLists/ADD_TODO_LIST':
-            return [action.payload.todoList, ...state]
+            return [{...action.payload.todoList, filter: 'ALL'}, ...state]
         case 'todoList/CHANGE_TODO_LIST':
             return state.map(el => el.id === action.payload.id ? {
                 ...el,
@@ -18,6 +18,11 @@ export const todoListsReducer = (
             } : el)
         case 'todoLists/REMOVE_TODO_LIST':
             return state.filter(el => el.id !== action.payload.id)
+        case 'todoLists/CHANGE_FILTER':
+            return state.map(el => el.id === action.payload.todoListId ? {
+                ...el,
+                filter: action.payload.filter
+            } : el)
         default:
             return state
     }

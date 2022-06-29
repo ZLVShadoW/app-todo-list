@@ -1,10 +1,16 @@
 export type Nullable<T> = null | T
 
+export type FilterStatusesType = 'ALL' | 'ACTIVE' | 'COMPLETED'
+
 export type TodoListType = {
     id: string
     title: string
     addedDate: string
     order: number
+}
+
+export type TodoListDomainType = TodoListType & {
+    filter: FilterStatusesType
 }
 
 export enum TaskStatuses {

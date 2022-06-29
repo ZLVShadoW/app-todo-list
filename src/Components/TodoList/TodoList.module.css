@@ -3,3 +3,10 @@
     flex-direction: column;
     border: 1px solid black;
 }
+
+.btnGroup {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 16px;
+}

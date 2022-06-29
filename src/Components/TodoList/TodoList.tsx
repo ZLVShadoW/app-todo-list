@@ -9,13 +9,20 @@ import {
     fetchTasks,
     updateTask
 } from '../../bll/thunk/tasks-thunks';
-import {TaskStatuses, TaskType, TodoListType} from '../../types/types';
+import {
+    FilterStatusesType,
+    TaskStatuses,
+    TaskType,
+    TodoListDomainType,
+} from '../../types/types';
 import {AddItemForm} from '../1_Common/AddItemForm/AddItemForm';
 import {TodoListHeader} from '../TodoListHeader/TodoListHeader';
+import {Button} from '../1_Common/Button/Button';
+import {changeFilter} from '../../bll/actions/todoLists-actions';
 
 
 type TodoListPropsType = {
-    todoList: TodoListType
+    todoList: TodoListDomainType
     tasks: TaskType[]
 }
 
@@ -38,6 +45,12 @@ export const TodoList: React.FC<TodoListPropsType> = ({todoList, tasks}) => {
         dispatch(updateTask(todoList.id, taskId, {title}))
     }
 
+    const changeFilterHandler = (filter: FilterStatusesType) => {
+        dispatch(changeFilter(todoList.id, filter))
+    }
+
+    const filteredTasks = filterTasks(tasks, todoList.filter)
+
     React.useEffect(() => {
         dispatch(fetchTasks(todoList.id))
     }, [])
@@ -49,15 +62,32 @@ export const TodoList: React.FC<TodoListPropsType> = ({todoList, tasks}) => {
             <AddItemForm addItem={addTask}/>
             <div>
                 {
-                    tasks && tasks.map(task => <Task key={task.id}
-                                                     id={task.id}
-                                                     title={task.title}
-                                                     status={task.status}
-                                                     removeTask={removeTask}
-                                                     changeTaskStatus={changeTaskStatus}
-                                                     changeTaskTitle={changeTaskTitle}/>)
+                    tasks && filteredTasks.map(task => <Task key={task.id}
+                                                             id={task.id}
+                                                             title={task.title}
+                                                             status={task.status}
+                                                             removeTask={removeTask}
+                                                             changeTaskStatus={changeTaskStatus}
+                                                             changeTaskTitle={changeTaskTitle}/>)
                 }
+            </div>
+
+            <div className={styles.btnGroup}>
+                <Button onClick={() => changeFilterHandler('ALL')}>All</Button>
+                <Button onClick={() => changeFilterHandler('ACTIVE')}>Active</Button>
+                <Button
+                    onClick={() => changeFilterHandler('COMPLETED')}>Completed</Button>
             </div>
         </div>
     );
 };
+
+const filterTasks = (tasks: TaskType[], filter: FilterStatusesType) => {
+    if (filter === 'COMPLETED') {
+        return tasks.filter(el => el.status === TaskStatuses.Completed)
+    }
+    if (filter === 'ACTIVE') {
+        return tasks.filter(el => el.status === TaskStatuses.New)
+    }
+    return tasks
+}
