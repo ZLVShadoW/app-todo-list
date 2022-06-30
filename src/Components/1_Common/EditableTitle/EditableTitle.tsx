@@ -39,14 +39,31 @@ export const EditableTitle: React.FC<EditableTitlePropsType> = ({
         }
     }
 
+    const bl = (e: React.FocusEvent<HTMLInputElement, Element>) => {
+        // if(e.currentTarget.nodeName === 'BUTTON') {
+        //     e.preventDefault()
+        // } else {onEditHandler()}
+
+        // alert('bbb')
+        console.log('ppp')
+        // e.preventDefault()
+        setTimeout(onEditHandler, 100)
+        // onEditHandler()
+
+    }
+
     return (
         <div className={styles.title}>
             {editMode
                 ? <input value={value}
+                         autoFocus
                          onChange={onChangeValueHandler}
-                         onKeyPress={callOnEditHandler}/>
+                         onKeyPress={callOnEditHandler}
+                         onBlur={bl}
+                />
                 : <Tag>{title}</Tag>
             }
+
             <Button onClick={onEditHandler}>Edit</Button>
         </div>
     );
