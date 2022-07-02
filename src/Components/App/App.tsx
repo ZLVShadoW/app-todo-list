@@ -1,23 +1,35 @@
 import styles from './App.module.css';
 
 import React from 'react';
-import {TodoLists} from '../TodoLists/TodoLists';
 import {useAppDispatch} from '../../bll/store';
-import {AddItemForm} from '../1_Common/AddItemForm/AddItemForm';
-import {createTodoList} from '../../bll/thunk/todoLists-thunks';
+import {initializeApp} from '../../bll/thunk/app-thunks';
+import {Routes, Route, Navigate} from 'react-router-dom'
+import {TodoListsPage} from '../../Pages/TodoListsPage';
+import {LoginPage} from '../../Pages/LoginPage';
+import {ErrorPage} from '../../Pages/ErrorPage';
 
 function App() {
     const dispatch = useAppDispatch()
 
-    const addTodoList = (title: string) => {
-        dispatch(createTodoList(title))
-    }
+    // const isInitialized = useAppSelector(state => state.app.isInitialized)
+
+    React.useEffect(() => {
+        dispatch(initializeApp())
+    }, [dispatch])
 
     return (
-        <div className={styles.container}>
-            <AddItemForm addItem={addTodoList}/>
-            <TodoLists/>
-        </div>
+        <>
+            <div style={{height: 85, background: '#ddd', marginBottom: 25}}></div>
+            <div className={styles.container}>
+                <Routes>
+                    <Route path={'/'} element={<TodoListsPage/>}/>
+                    <Route path={'login'} element={<LoginPage/>}/>
+                    <Route path={'/404'} element={<ErrorPage/>}/>
+                    <Route path={'*'} element={<Navigate to={'/404'}/>}/>
+                </Routes>
+            </div>
+
+        </>
     );
 }
 

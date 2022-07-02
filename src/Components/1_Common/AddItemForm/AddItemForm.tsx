@@ -1,3 +1,5 @@
+import styles from './AddItemForm.module.css'
+
 import React from 'react';
 import {Button} from '../Button/Button';
 import {Nullable} from '../../../types/types';
@@ -34,13 +36,13 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = ({addItem}) => {
     }
 
     return (
-        <div style={{width: '100%', position: 'relative', paddingBottom: 26}}>
+        <div className={styles.itemForm}>
             <input value={title}
                    onChange={onChangeTitleHandler}
                    onKeyPress={onKeyPressHandler}
                    placeholder={'Title'}/>
             <Button onClick={onAddHandler}>Add</Button>
-            {error && <div style={{position: 'absolute', bottom: 0, color: 'red'}}>{error}</div>}
+            {error && <div className={styles.errorMessage}>{error}</div>}
         </div>
     );
 };

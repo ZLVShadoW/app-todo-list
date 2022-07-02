@@ -1,0 +1,11 @@
+.itemForm {
+    width: 100%;
+    position: relative;
+    padding-bottom: 22px;
+}
+
+.errorMessage {
+    position: absolute;
+    bottom: 0;
+    color: #ff0000;
+}

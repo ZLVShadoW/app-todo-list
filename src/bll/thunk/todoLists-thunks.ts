@@ -6,13 +6,17 @@ import {
     removeTodoList,
     setTodoLists
 } from '../actions/todoLists-actions';
+import {setLoadingStatus} from '../actions/add-actions';
 
 export const fetchTodoLists = (): AppThunkType => async dispatch => {
     try {
+        dispatch(setLoadingStatus('loading'))
         const res = await TodoListsAPI.getTodoLists()
         dispatch(setTodoLists(res.data))
+        dispatch(setLoadingStatus('idle'))
     } catch (e: any) {
         console.log(e)
+    } finally {
     }
 }
 

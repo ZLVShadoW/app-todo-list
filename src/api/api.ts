@@ -36,6 +36,12 @@ export const TodoListsAPI = {
     }
 }
 
+export const AuthAPI = {
+    me() {
+        return instance.get<CommonResponseType<MeResponseType>>(`auth/me`)
+    }
+}
+
 
 // type
 
@@ -56,6 +62,12 @@ type GetTasksResponseType = {
     items: TaskType[]
     totalCount: number
     error: string | null
+}
+
+type MeResponseType = {
+    id: number
+    email: string
+    login: string
 }
 
 
