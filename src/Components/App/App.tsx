@@ -11,8 +11,6 @@ import {ErrorPage} from '../../Pages/ErrorPage';
 function App() {
     const dispatch = useAppDispatch()
 
-    // const isInitialized = useAppSelector(state => state.app.isInitialized)
-
     React.useEffect(() => {
         dispatch(initializeApp())
     }, [dispatch])

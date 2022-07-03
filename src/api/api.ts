@@ -76,7 +76,7 @@ type MeResponseType = {
 export type LoginFormType = {
     email: string
     password: string
-    remember: boolean
+    rememberMe: boolean
 }
 
 
