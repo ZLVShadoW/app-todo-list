@@ -1,4 +1,4 @@
-import {setInitializeApp, setLoadingStatus} from '../actions/add-actions';
+import {setInitializeApp, setLoadingStatus} from '../actions/app-actions';
 
 export type AppReducerActionsType = ReturnType<typeof setLoadingStatus>
     | ReturnType<typeof setInitializeApp>

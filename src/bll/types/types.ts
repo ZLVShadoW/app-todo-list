@@ -3,6 +3,7 @@ import {TodoListsReducerActionsType} from './todoLists-type';
 import {TasksReducerActionsType} from './tasks-type';
 import {store} from '../store';
 import {AppReducerActionsType} from './app-types';
+import {AuthReducerActionsType} from './auth-types';
 
 export type AppRootStateType = ReturnType<typeof store.getState>
 // type AppDispatch = typeof store.dispatch не подходит для thunk
@@ -14,3 +15,4 @@ type AppRootActionsType =
     TodoListsReducerActionsType
     | TasksReducerActionsType
     | AppReducerActionsType
+    | AuthReducerActionsType

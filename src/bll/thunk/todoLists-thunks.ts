@@ -6,7 +6,7 @@ import {
     removeTodoList,
     setTodoLists
 } from '../actions/todoLists-actions';
-import {setLoadingStatus} from '../actions/add-actions';
+import {setLoadingStatus} from '../actions/app-actions';
 
 export const fetchTodoLists = (): AppThunkType => async dispatch => {
     try {

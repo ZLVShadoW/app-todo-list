@@ -39,6 +39,9 @@ export const TodoListsAPI = {
 export const AuthAPI = {
     me() {
         return instance.get<CommonResponseType<MeResponseType>>(`auth/me`)
+    },
+    login(data: LoginFormType) {
+        return instance.post<CommonResponseType<{ userId: number }>>(`auth/login`, data)
     }
 }
 
@@ -68,6 +71,12 @@ type MeResponseType = {
     id: number
     email: string
     login: string
+}
+
+export type LoginFormType = {
+    email: string
+    password: string
+    remember: boolean
 }
 
 
