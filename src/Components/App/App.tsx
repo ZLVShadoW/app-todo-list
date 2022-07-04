@@ -7,6 +7,7 @@ import {Routes, Route, Navigate} from 'react-router-dom'
 import {TodoListsPage} from '../../Pages/TodoListsPage';
 import {LoginPage} from '../../Pages/LoginPage';
 import {ErrorPage} from '../../Pages/ErrorPage';
+import {Header} from '../Header/Header';
 
 function App() {
     const dispatch = useAppDispatch()
@@ -17,7 +18,7 @@ function App() {
 
     return (
         <>
-            <div style={{height: 85, background: '#ddd', marginBottom: 25}}></div>
+            <Header/>
             <div className={styles.container}>
                 <Routes>
                     <Route path={'/'} element={<TodoListsPage/>}/>

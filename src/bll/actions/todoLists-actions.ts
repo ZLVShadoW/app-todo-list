@@ -25,3 +25,5 @@ export const changeFilter = (todoListId: string, filter: FilterStatusesType) => 
     type: 'todoLists/CHANGE_FILTER',
     payload: {todoListId, filter}
 } as const)
+
+export const clearData = () => ({type: 'todoLists/CLEAR-DATA'} as const)

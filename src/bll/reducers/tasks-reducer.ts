@@ -40,6 +40,8 @@ export const tasksReducer = (
                     .map(el => el.id === action.payload.taskId
                         ? {...el, ...action.payload.data} : el)
             }
+        case 'todoLists/CLEAR-DATA':
+            return {}
         default:
             return state
     }

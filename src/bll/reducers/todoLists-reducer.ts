@@ -23,6 +23,8 @@ export const todoListsReducer = (
                 ...el,
                 filter: action.payload.filter
             } : el)
+        case 'todoLists/CLEAR-DATA':
+            return []
         default:
             return state
     }

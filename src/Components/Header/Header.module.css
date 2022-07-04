@@ -1,0 +1,15 @@
+.header {
+    height: 55px;
+    background: #ddd;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #ccc;
+}
+
+.container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    max-width: 1850px;
+    height: 100%;
+    margin: 0 auto;
+}
