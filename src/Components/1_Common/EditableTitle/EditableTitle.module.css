@@ -5,3 +5,13 @@
     gap: 16px;
     width: 100%;
 }
+
+.inp {
+    align-self: stretch;
+    outline: none;
+}
+
+.inp:focus {
+    outline: 1px solid #515151;
+    border: 0;
+}

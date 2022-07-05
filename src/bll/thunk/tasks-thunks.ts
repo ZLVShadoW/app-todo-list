@@ -2,11 +2,14 @@ import {AppDispatchThunkActionType, AppRootStateType, AppThunkType} from '../typ
 import {ResultCodeEnum, TodoListsAPI} from '../../api/api';
 import {addTask, removeTask, setTasks, updateChangesTask} from '../actions/tasks-actions';
 import {UpdateDomainTaskModelType, UpdateTaskModelType} from '../../types/types';
+import {setLoadingStatus} from '../actions/app-actions';
 
 export const fetchTasks = (todoListId: string): AppThunkType => async dispatch => {
     try {
+        dispatch(setLoadingStatus('loading'))
         const res = await TodoListsAPI.getTasks(todoListId)
         dispatch(setTasks(todoListId, res.data.items))
+        dispatch(setLoadingStatus('idle'))
     } catch (e: any) {
 
     }

@@ -1,6 +1,6 @@
 import styles from './EditableTitle.module.css'
 
-import React from 'react';
+import React, {useState} from 'react';
 import {Button} from '../Button/Button';
 
 
@@ -17,6 +17,7 @@ export const EditableTitle: React.FC<EditableTitlePropsType> = ({
 }) => {
     const [editMode, setEditMode] = React.useState(false)
     const [value, setValue] = React.useState(title)
+    const [first, setFirst] = useState(true)
 
     const onChangeValueHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue(e.currentTarget.value)
@@ -25,9 +26,6 @@ export const EditableTitle: React.FC<EditableTitlePropsType> = ({
     const onEditHandler = () => {
         setEditMode(!editMode)
 
-        if (editMode && value.trim() !== '' && value !== title) {
-            onChangeTitle(value.trim())
-        }
         if (value.trim() === '') {
             setValue(title)
         }
@@ -39,23 +37,23 @@ export const EditableTitle: React.FC<EditableTitlePropsType> = ({
         }
     }
 
-    const bl = (e: React.FocusEvent<HTMLInputElement, Element>) => {
-        // if(e.currentTarget.nodeName === 'BUTTON') {
-        //     e.preventDefault()
-        // } else {onEditHandler()}
-
-        // alert('bbb')
-        console.log('ppp')
-        // e.preventDefault()
+    const bl = () => {
         setTimeout(onEditHandler, 100)
-        // onEditHandler()
-
     }
+
+    React.useEffect(() => {
+        if (!first && !editMode && value.trim() !== '' && value !== title) {
+            onChangeTitle(value.trim())
+        } else {
+            setFirst(false)
+        }
+    }, [editMode])
 
     return (
         <div className={styles.title}>
             {editMode
-                ? <input value={value}
+                ? <input className={styles.inp}
+                         value={value}
                          autoFocus
                          onChange={onChangeValueHandler}
                          onKeyPress={callOnEditHandler}

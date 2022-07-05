@@ -37,7 +37,8 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = ({addItem}) => {
 
     return (
         <div className={styles.itemForm}>
-            <input value={title}
+            <input className={styles.inp}
+                   value={title}
                    onChange={onChangeTitleHandler}
                    onKeyPress={onKeyPressHandler}
                    placeholder={'Title'}/>

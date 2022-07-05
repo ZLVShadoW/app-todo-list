@@ -1,8 +1,8 @@
 .header {
     height: 55px;
-    background: #ddd;
+    background: #eee;
     margin-bottom: 25px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #ddd;
 }
 
 .container {

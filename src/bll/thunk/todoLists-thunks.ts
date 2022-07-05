@@ -22,10 +22,12 @@ export const fetchTodoLists = (): AppThunkType => async dispatch => {
 
 export const createTodoList = (title: string): AppThunkType => async dispatch => {
     try {
+        dispatch(setLoadingStatus('loading'))
         const res = await TodoListsAPI.createTodoList(title)
         if (res.data.resultCode === ResultCodeEnum.success) {
             dispatch(addTodoList(res.data.data.item))
         }
+        dispatch(setLoadingStatus('idle'))
     } catch (e: any) {
 
     }

@@ -73,10 +73,13 @@ export const TodoList: React.FC<TodoListPropsType> = ({todoList, tasks}) => {
             </div>
 
             <div className={styles.btnGroup}>
-                <Button onClick={() => changeFilterHandler('ALL')}>All</Button>
-                <Button onClick={() => changeFilterHandler('ACTIVE')}>Active</Button>
+                <Button onClick={() => changeFilterHandler('ALL')}
+                        active={todoList.filter === 'ALL'}>All</Button>
+                <Button onClick={() => changeFilterHandler('ACTIVE')}
+                        active={todoList.filter === 'ACTIVE'}>Active</Button>
                 <Button
-                    onClick={() => changeFilterHandler('COMPLETED')}>Completed</Button>
+                    onClick={() => changeFilterHandler('COMPLETED')}
+                    active={todoList.filter === 'COMPLETED'}>Completed</Button>
             </div>
         </div>
     );

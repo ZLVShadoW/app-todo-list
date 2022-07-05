@@ -1,11 +1,18 @@
 .itemForm {
+    display: flex;
+    gap: 8px;
     width: 100%;
     position: relative;
-    padding-bottom: 22px;
+    padding-bottom: 28px;
+    margin: 0 10px;
+}
+
+.inp {
+    border: 1px solid #ccc;
 }
 
 .errorMessage {
     position: absolute;
-    bottom: 0;
+    bottom: 4px;
     color: #ff0000;
 }
