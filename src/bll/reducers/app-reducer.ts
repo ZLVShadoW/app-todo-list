@@ -2,7 +2,8 @@ import {AppInitStateType, AppReducerActionsType} from '../types/app-types';
 
 const initState: AppInitStateType = {
     loadingStatus: 'idle',
-    isInitialized: false
+    isInitialized: false,
+    errorMessage: ''
 }
 
 export const appReducer = (
@@ -14,6 +15,8 @@ export const appReducer = (
             return {...state, loadingStatus: action.payload.status}
         case 'app/SET_INITIALIZE_APP':
             return {...state, isInitialized: action.payload.isInitialized}
+        case 'app/SET_APP_ERROR':
+            return {...state, errorMessage: action.payload.message}
         default:
             return state
     }

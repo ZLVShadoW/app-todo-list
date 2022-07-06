@@ -1,0 +1,22 @@
+.notification {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    padding: 4px 38px 6px 18px;
+    border-radius: 4px;
+    background: red;
+    color: #fff;
+    max-width: 350px;
+    box-shadow: 0 0 4px #555;
+}
+
+.btn {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 1;
+    transform: translateY(-52%);
+    cursor: pointer;
+}

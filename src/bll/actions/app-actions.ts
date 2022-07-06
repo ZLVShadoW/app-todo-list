@@ -9,3 +9,8 @@ export const setInitializeApp = (isInitialized: boolean) => ({
     type: 'app/SET_INITIALIZE_APP',
     payload: {isInitialized}
 } as const)
+
+export const setAppError = (message: string) => ({
+    type: 'app/SET_APP_ERROR',
+    payload: {message}
+} as const)

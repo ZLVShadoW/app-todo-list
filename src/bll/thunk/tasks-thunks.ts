@@ -9,33 +9,40 @@ export const fetchTasks = (todoListId: string): AppThunkType => async dispatch =
         dispatch(setLoadingStatus('loading'))
         const res = await TodoListsAPI.getTasks(todoListId)
         dispatch(setTasks(todoListId, res.data.items))
-        dispatch(setLoadingStatus('idle'))
     } catch (e: any) {
 
+    } finally {
+        dispatch(setLoadingStatus('idle'))
     }
 }
 
 export const createTask = (
     todoListId: string, title: string): AppThunkType => async dispatch => {
     try {
+        dispatch(setLoadingStatus('loading'))
         const res = await TodoListsAPI.createTask(todoListId, title)
         if (res.data.resultCode === ResultCodeEnum.success) {
             dispatch(addTask(res.data.data.item))
         }
     } catch (e: any) {
 
+    } finally {
+        dispatch(setLoadingStatus('idle'))
     }
 }
 
 export const deleteTask = (
     todoListId: string, taskId: string): AppThunkType => async dispatch => {
     try {
+        dispatch(setLoadingStatus('loading'))
         const res = await TodoListsAPI.deleteTask(todoListId, taskId)
         if (res.data.resultCode === ResultCodeEnum.success) {
             dispatch(removeTask(todoListId, taskId))
         }
     } catch (e: any) {
 
+    } finally {
+        dispatch(setLoadingStatus('idle'))
     }
 }
 
@@ -61,11 +68,14 @@ export const updateTask = (
         ...data
     }
     try {
+        dispatch(setLoadingStatus('loading'))
         const res = await TodoListsAPI.updateTask(todoListId, taskId, model)
         if (res.data.resultCode === ResultCodeEnum.success) {
             dispatch(updateChangesTask(todoListId, taskId, data))
         }
     } catch (e: any) {
 
+    } finally {
+        dispatch(setLoadingStatus('idle'))
     }
 }

@@ -9,6 +9,7 @@ import {LoginPage} from '../../Pages/LoginPage';
 import {ErrorPage} from '../../Pages/ErrorPage';
 import {Header} from '../Header/Header';
 import {Loader} from '../1_Common/Loader/Loader';
+import {Notification} from '../1_Common/Notification/Notification';
 
 function App() {
     const dispatch = useAppDispatch()
@@ -20,7 +21,7 @@ function App() {
         dispatch(initializeApp())
     }, [dispatch])
 
-    if (!isInitialized) return null
+    if (!isInitialized) return <Loader/>
 
     return (
         <>
@@ -36,6 +37,8 @@ function App() {
                     <Route path={'*'} element={<Navigate to={'/404'}/>}/>
                 </Routes>
             </div>
+
+            <Notification/>
 
         </>
     );
