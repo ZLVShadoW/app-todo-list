@@ -26,7 +26,7 @@ export const EditableTitle: React.FC<EditableTitlePropsType> = ({
     const onEditHandler = () => {
         setEditMode(!editMode)
 
-        if (value.trim() === '') {
+        if (value.trim() === '' || value.trim() === title) {
             setValue(title)
         }
     }

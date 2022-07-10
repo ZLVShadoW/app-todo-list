@@ -9,9 +9,11 @@ export const initializeApp = (): AppThunkType => async dispatch => {
         const res = await AuthAPI.me()
         if (res.data.resultCode === ResultCodeEnum.success) {
             dispatch(setIsLoggedIn(true))
+        } else {
+            dispatch(setAppError(res.data.messages[0]))
         }
     } catch (e: any) {
-        // dispatch(setAppError())
+        dispatch(setAppError(e.message ? e.message : 'Some error occurred'))
     } finally {
         dispatch(setLoadingStatus('idle'))
         dispatch(setInitializeApp(true))

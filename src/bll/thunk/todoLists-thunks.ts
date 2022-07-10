@@ -14,7 +14,7 @@ export const fetchTodoLists = (): AppThunkType => async dispatch => {
         const res = await TodoListsAPI.getTodoLists()
         dispatch(setTodoLists(res.data))
     } catch (e: any) {
-        console.log(e)
+        dispatch(setAppError(e.message ? e.message : 'Some error occurred'))
     } finally {
         dispatch(setLoadingStatus('idle'))
     }

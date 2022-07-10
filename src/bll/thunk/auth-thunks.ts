@@ -10,6 +10,8 @@ export const login = (data: LoginFormType): AppThunkType => async dispatch => {
         const res = await AuthAPI.login(data)
         if (res.data.resultCode === ResultCodeEnum.success) {
             dispatch(setIsLoggedIn(true))
+        } else {
+            dispatch(setAppError(res.data.messages[0]))
         }
     } catch (e: any) {
         dispatch(setAppError(e.message ? e.message : 'Some error occurred'))
@@ -25,6 +27,8 @@ export const logout = (): AppThunkType => async dispatch => {
         if (res.data.resultCode === ResultCodeEnum.success) {
             dispatch(setIsLoggedIn(false))
             dispatch(clearData())
+        } else {
+            dispatch(setAppError(res.data.messages[0]))
         }
     } catch (e: any) {
         dispatch(setAppError(e.message ? e.message : 'Some error occurred'))
