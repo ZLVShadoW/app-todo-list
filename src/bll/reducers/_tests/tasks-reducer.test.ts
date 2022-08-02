@@ -41,6 +41,7 @@ test('tasks should be added to todoList', () => {
     const endState = tasksReducer(startState, setTasks('1', tasks))
 
     expect(endState['1'].length).toBe(2)
+    expect(endState['1']).toBeDefined()
 })
 
 test('task should be added to todoList', () => {
