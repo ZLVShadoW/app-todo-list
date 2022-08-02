@@ -37,7 +37,8 @@ export const EditableTitle: React.FC<EditableTitlePropsType> = ({
         }
     }
 
-    const bl = () => {
+    const onBlurHandle = () => {
+        //setTimeout необходим, т.к. конфликт между onBlur и onClick
         setTimeout(onEditHandler, 100)
     }
 
@@ -57,7 +58,7 @@ export const EditableTitle: React.FC<EditableTitlePropsType> = ({
                          autoFocus
                          onChange={onChangeValueHandler}
                          onKeyPress={callOnEditHandler}
-                         onBlur={bl}
+                         onBlur={onBlurHandle}
                 />
                 : <Tag>{title}</Tag>
             }
