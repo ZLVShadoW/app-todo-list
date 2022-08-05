@@ -1,7 +1,13 @@
 import {TasksInitStateType} from '../../types/tasks-type';
-import {addTask, removeTask, setTasks} from '../../actions/tasks-actions';
-import {TaskStatuses, TaskType} from '../../../types/types';
+import {
+    addTask,
+    removeTask,
+    setTasks,
+    updateChangesTask
+} from '../../actions/tasks-actions';
+import {TaskStatuses, TaskType, UpdateDomainTaskModelType} from '../../../types/types';
 import {tasksReducer} from '../tasks-reducer';
+
 
 let startState: TasksInitStateType
 
@@ -130,4 +136,13 @@ test('task should be removed from todoList', () => {
     expect(endState['2'].length).toBe(2)
     expect(endState['2'][0].id).toBe('2')
     expect(endState['2'].every(el => el.id !== '1')).toBeTruthy()
+})
+
+test('task should be updated', () => {
+    const data: UpdateDomainTaskModelType = {status: TaskStatuses.Completed}
+    const endState = tasksReducer(startState, updateChangesTask('1', '2', data))
+
+    expect(endState['1'][1].status).toBe(TaskStatuses.Completed)
+    expect(endState['1'][1].title).toBe('task 2 toto list 1')
+    expect(endState['1'].length).toBe(2)
 })
