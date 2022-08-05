@@ -10,6 +10,8 @@ import {ErrorPage} from '../../Pages/ErrorPage';
 import {Header} from '../Header/Header';
 import {Loader} from '../1_Common/Loader/Loader';
 import {Notification} from '../1_Common/Notification/Notification';
+import {PATH} from '../../Pages/pagesRouts';
+
 
 function App() {
     const dispatch = useAppDispatch()
@@ -31,10 +33,10 @@ function App() {
 
             <div className={styles.container}>
                 <Routes>
-                    <Route path={'/'} element={<TodoListsPage/>}/>
-                    <Route path={'login'} element={<LoginPage/>}/>
-                    <Route path={'/404'} element={<ErrorPage/>}/>
-                    <Route path={'*'} element={<Navigate to={'/404'}/>}/>
+                    <Route path={PATH.TODO_LISTS} element={<TodoListsPage/>}/>
+                    <Route path={PATH.LOGIN} element={<LoginPage/>}/>
+                    <Route path={PATH.ERROR} element={<ErrorPage/>}/>
+                    <Route path={'*'} element={<Navigate to={PATH.ERROR}/>}/>
                 </Routes>
             </div>
 
