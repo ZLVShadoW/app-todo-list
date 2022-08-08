@@ -1,7 +1,12 @@
 import {TodoListInitStateType} from '../../types/todoLists-type';
 import {TodoListType} from '../../../types/types';
 import {todoListsReducer} from '../todoLists-reducer';
-import {addTodoList, setTodoLists} from '../../actions/todoLists-actions';
+import {
+    addTodoList, changeFilter,
+    changeTodoList, clearData,
+    removeTodoList,
+    setTodoLists
+} from '../../actions/todoLists-actions';
 
 let startState: TodoListInitStateType
 
@@ -37,4 +42,32 @@ test('new todoList should be added', () => {
 
     expect(endState.length).toBe(4)
     expect(endState[0].title).toBe('todoList 5')
+})
+
+test('correct todoList should be updated', () => {
+    const endState = todoListsReducer(startState, changeTodoList('2', 'new title'))
+
+    expect(endState[1].title).toBe('new title')
+    expect(endState[0].title).toBe('todoList 1')
+})
+
+test('correct todoList should be removed', () => {
+    const endState = todoListsReducer(startState, removeTodoList('3'))
+
+    expect(endState[0].title).toBe('todoList 1')
+    expect(endState.length).toBe(2)
+    expect(endState.some(el => el.id === '3')).toBeFalsy()
+})
+
+test('correct filter of todoList should be changed', () => {
+    const endState = todoListsReducer(startState, changeFilter('2', 'COMPLETED'))
+
+    expect(endState[1].filter).toBe('COMPLETED')
+    expect(endState.filter(el => el.filter !== 'COMPLETED').length).toBe(1)
+})
+
+test('todoList should be empty array', () => {
+    const endState = todoListsReducer(startState, clearData())
+
+    expect(endState.length).toBe(0)
 })
